@@ -495,6 +495,10 @@ class OplogThread(threading.Thread):
         elif entry["op"] == "u":
             entry["o"] = filter_fields(entry_o, fields)
 
+        if "ContentType" in entry_o:
+            if entry_o["ContentType"] == "Page":
+                return None
+
         return entry
 
     def get_oplog_cursor(self, timestamp=None):
