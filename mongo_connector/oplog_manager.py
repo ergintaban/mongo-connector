@@ -204,6 +204,13 @@ class OplogThread(threading.Thread):
             exclude_fields=namespace.exclude_fields,
         ):
             return True, False
+        
+        # ContentType Check
+        if "ContentType" in entry["o"]:
+            if entry["o"]["ContentType"] == "Page":
+                LOG.info("ContentType Page is skipped")
+                return True, False
+
         return False, is_gridfs_file
 
     @log_fatal_exceptions
@@ -494,10 +501,6 @@ class OplogThread(threading.Thread):
         # if no '$set' or '$unset' are present.
         elif entry["op"] == "u":
             entry["o"] = filter_fields(entry_o, fields)
-
-        if "ContentType" in entry_o:
-            if entry_o["ContentType"] == "Page":
-                return None
 
         return entry
 
