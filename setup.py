@@ -35,7 +35,7 @@ setup(
     author_email="mongodb-user@googlegroups.com",
     description="Mongo Connector",
     keywords=["mongo-connector", "mongo", "mongodb", "solr", "elasticsearch"],
-    url="https://github.com/yougov/mongo-connector",
+    url="https://github.com/ergintaban/mongo-connector",
     platforms=["any"],
     classifiers=filter(None, classifiers.split("\n")),
     install_requires=[
